@@ -1,0 +1,19 @@
+@import "./sass/variables";
+@import "./sass/mixin";
+@import "./sass/navbar";
+
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(207, 247, 250);
+    background: linear-gradient(90deg, rgba(207, 247, 250, 1) 0%, rgba(74, 168, 255, 1) 100%);
+    height: 100vh;
+    width: 100vw;
+    @include flex(center, center);
+}
+
+.weather-app {
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+}
