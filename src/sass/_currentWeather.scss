@@ -1,0 +1,24 @@
+.current-weather-section {
+    background-color: $sectionBgColor;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 0.7em;
+
+    .current-weather-container {
+        //@include flex(center, center);
+
+        .basic-stats {
+            color: $mainBlueColor;
+
+            .temperature-container {
+                .temperature {
+                    font-size: 4rem;
+                }
+
+                img {
+                    width: 50px;
+                }
+            }
+        }
+    }
+}

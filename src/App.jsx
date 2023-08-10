@@ -1,23 +1,22 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import { Navbar } from "./components/Navbar";
 import { WeatherForNextDays } from "./components/WeatherForNextDays";
 import { CurrentWeather } from "./components/CurrentWeather";
 import "./style.css";
 
-function App() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=dallas&appid=44758223122f1f02ff35afd7add211c1`;
+export const AppContext = createContext();
 
-  async function logMovies() {
-    const response = await fetch(url);
-    const weather = await response.json();
-    console.log(weather);
-  }
-  logMovies();
+function App() {
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState("");
+
   return (
     <div className="weather-app">
-      <Navbar />
-      <CurrentWeather />
-      <WeatherForNextDays />
+      <AppContext.Provider value={{ query, setQuery, data, setData }}>
+        <Navbar />
+        <CurrentWeather />
+        <WeatherForNextDays />
+      </AppContext.Provider>
     </div>
   );
 }
