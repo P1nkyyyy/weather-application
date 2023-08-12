@@ -1,22 +1,35 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import cloud from "../assets/cloud.svg";
 import { AppContext } from "../App";
-import CityList from "../city.list.json";
+import { getDate } from "./GetDate";
 
 export const BasicStatsCurrent = () => {
-  const { data } = useContext(AppContext);
+  const { queryData, weatherData } = useContext(AppContext);
+  const [currentDate, setCurrentDate] = useState(getDate());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDate(getDate());
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   return (
     <div className="basic-stats">
       <h4>
-        {data.name}, {data?.country}
+        {queryData.name}, {queryData.country}
       </h4>
-      <p>Wednesday, 4:48 PM</p>
+      <p>{currentDate}</p>
       <div className="temperature-container">
-        <span className="temperature">{data.main?.feels_like}</span>
+        <span className="temperature">
+          {Math.round(weatherData.main?.temp)}°C
+        </span>
         <img src={cloud} alt="" />
       </div>
-      <p>{data.weather}</p>
+      <p>{weatherData.weather[0].description}</p>
     </div>
   );
 };
