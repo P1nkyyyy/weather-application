@@ -8,11 +8,21 @@ export const AppContext = createContext();
 
 function App() {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState({});
+  const [queryData, setQueryData] = useState({});
+  const [weatherData, setWeatherData] = useState({});
 
   return (
     <div className="weather-app">
-      <AppContext.Provider value={{ query, setQuery, data, setData }}>
+      <AppContext.Provider
+        value={{
+          query,
+          setQuery,
+          queryData,
+          setQueryData,
+          weatherData,
+          setWeatherData,
+        }}
+      >
         <Navbar />
         <CurrentWeather />
         <WeatherForNextDays />
