@@ -8,7 +8,7 @@ export const AppContext = createContext();
 
 function App() {
   const [query, setQuery] = useState("");
-  const [data, setData] = useState("");
+  const [data, setData] = useState({});
 
   return (
     <div className="weather-app">
