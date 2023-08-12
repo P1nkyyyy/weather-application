@@ -4,7 +4,14 @@ import { AppContext } from "../App";
 import search from "../assets/search.svg";
 
 export const Navbar = () => {
-  const { query, setQuery, setData, data } = useContext(AppContext);
+  const {
+    query,
+    setQuery,
+    setQueryData,
+    queryData,
+    weatherData,
+    setWeatherData,
+  } = useContext(AppContext);
 
   const api = {
     key: "44758223122f1f02ff35afd7add211c1",
@@ -21,7 +28,7 @@ export const Navbar = () => {
         .map((city) => {
           if (query === city.name) {
             console.log(city);
-            setData(city);
+            setQueryData(city);
             setQuery("");
           } else {
             console.log("Špatné město");
@@ -30,17 +37,16 @@ export const Navbar = () => {
     }
   };
 
-  // Udělat equal ===
-
   useEffect(() => {
     fetch(
-      `${api.base}forecast?lat=${data.coord?.lat}&lon=${data.coord?.lon}&units=metric&appid=${api.key}`
+      `${api.base}weather?lat=${queryData.coord?.lat}&lon=${queryData.coord?.lon}&units=metric&appid=${api.key}`
     )
       .then((res) => res.json())
       .then((data) => {
+        setWeatherData(data);
         console.log(data);
       });
-  }, []);
+  }, [queryData]);
 
   return (
     <nav className="navigation">
