@@ -2,21 +2,23 @@
 @import "./sass/mixin";
 @import "./sass/navbar";
 @import "./sass/currentWeather";
+@import "./sass/buttonForTemp";
 
 body {
     margin: 0;
-    padding: 0;
+
     /* background: rgb(207, 247, 250);
     background: linear-gradient(90deg, rgba(207, 247, 250, 1) 0%, rgba(74, 168, 255, 1) 100%);*/
     height: 100vh;
     width: 100vw;
-    @include flex(center, center);
+    //@include flex(center, center);
     font-family: "Poppins", sans-serif;
 }
 
 .weather-app {
-    width: 500px;
+    max-width: 800px;
     height: 500px;
+    padding: 2rem;
 }
 
 h1,

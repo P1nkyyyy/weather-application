@@ -4,14 +4,33 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 0.7em;
 
-    .current-weather-container {
-        //@include flex(center, center);
+    .current-weather-header {
+        @include flex(space-between, center);
 
+        h3 {
+            font-weight: 400;
+        }
+    }
+
+    .current-weather-container {
         .basic-stats {
             color: $mainBlueColor;
 
+            .city-name {
+                font-size: 1.5rem;
+            }
+
+            .current-date {
+                margin: 0;
+            }
+
+            .city-weather-type {
+                font-size: 1.3rem;
+                margin: 0;
+            }
+
             .temperature-container {
-                .temperature {
+                .city-temperature {
                     font-size: 4rem;
                 }
 
@@ -20,5 +39,38 @@
                 }
             }
         }
+
+        .more-stats {
+            .more-stats-feels-like {
+                color: $secBlueColor;
+            }
+
+            .more-stats-item {
+                @include flex(start, center);
+
+                svg {
+                    width: 2rem;
+                    height: auto;
+                }
+
+                .more-stats-text {
+                    color: $secBlueColor;
+                    width: 5.25rem;
+                }
+
+                .more-stats-value {
+                    color: $mainBlueColor;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .current-weather-container {
+        @include flex(center, start);
+        gap: 5rem;
+        //max-width: 30rem;
+        //min-width: 35rem;
     }
 }

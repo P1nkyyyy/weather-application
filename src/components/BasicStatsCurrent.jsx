@@ -19,17 +19,17 @@ export const BasicStatsCurrent = () => {
 
   return (
     <div className="basic-stats">
-      <h4>
+      <h4 className="city-name">
         {queryData.name}, {queryData.country}
       </h4>
-      <p>{currentDate}</p>
+      <p className="current-date">{currentDate}</p>
       <div className="temperature-container">
-        <span className="temperature">
+        <span className="city-temperature">
           {Math.round(weatherData.main?.temp)}°C
         </span>
         <img src={cloud} alt="" />
       </div>
-      <p>{weatherData.weather[0].description}</p>
+      <p className="city-weather-type">{weatherData.weather[0].description}</p>
     </div>
   );
 };

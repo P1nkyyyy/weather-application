@@ -21,32 +21,179 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 0.7em;
 }
+.current-weather-section .current-weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.current-weather-section .current-weather-header h3 {
+  font-weight: 400;
+}
 .current-weather-section .current-weather-container .basic-stats {
   color: #3080c8;
 }
-.current-weather-section .current-weather-container .basic-stats .temperature-container .temperature {
+.current-weather-section .current-weather-container .basic-stats .city-name {
+  font-size: 1.5rem;
+}
+.current-weather-section .current-weather-container .basic-stats .current-date {
+  margin: 0;
+}
+.current-weather-section .current-weather-container .basic-stats .city-weather-type {
+  font-size: 1.3rem;
+  margin: 0;
+}
+.current-weather-section .current-weather-container .basic-stats .temperature-container .city-temperature {
   font-size: 4rem;
 }
 .current-weather-section .current-weather-container .basic-stats .temperature-container img {
   width: 50px;
 }
+.current-weather-section .current-weather-container .more-stats .more-stats-feels-like {
+  color: #7b98b2;
+}
+.current-weather-section .current-weather-container .more-stats .more-stats-item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.current-weather-section .current-weather-container .more-stats .more-stats-item svg {
+  width: 2rem;
+  height: auto;
+}
+.current-weather-section .current-weather-container .more-stats .more-stats-item .more-stats-text {
+  color: #7b98b2;
+  width: 5.25rem;
+}
+.current-weather-section .current-weather-container .more-stats .more-stats-item .more-stats-value {
+  color: #3080c8;
+}
+
+@media screen and (min-width: 500px) {
+  .current-weather-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 5rem;
+  }
+}
+.toggle-button-cover {
+  display: table-cell;
+  position: relative;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.button-cover {
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px -8px #c5d6d6;
+  border-radius: 4px;
+}
+
+.button-cover:before {
+  counter-increment: button-counter;
+  content: counter(button-counter);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #d7e3e3;
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px;
+}
+
+.button-cover,
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  width: 74px;
+  height: 36px;
+  margin: -20px auto 0 auto;
+  overflow: hidden;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #dbe8ee;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
+}
+
+#button-3 .knobs:before {
+  content: "C";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 0.8;
+  padding: 9px 4px;
+  background-color: #3080c8;
+  border-radius: 50%;
+  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .checkbox:active + .knobs:before {
+  width: 46px;
+  border-radius: 100px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before {
+  margin-left: -26px;
+}
+
+#button-3 .checkbox:checked + .knobs:before {
+  content: "F";
+  left: 42px;
+  background-color: #3080c8;
+}
 
 body {
   margin: 0;
-  padding: 0;
   /* background: rgb(207, 247, 250);
   background: linear-gradient(90deg, rgba(207, 247, 250, 1) 0%, rgba(74, 168, 255, 1) 100%);*/
   height: 100vh;
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: "Poppins", sans-serif;
 }
 
 .weather-app {
-  width: 500px;
+  max-width: 800px;
   height: 500px;
+  padding: 2rem;
 }
 
 h1,
