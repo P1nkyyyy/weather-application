@@ -1,0 +1,34 @@
+.extended-forecast-section {
+    margin-top: 2rem;
+
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    .forecast-container {
+        @include flex(center, center);
+        gap: 2rem;
+        text-align: center;
+
+        .forecast-item {
+            text-transform: capitalize;
+            color: $mainBlueColor;
+
+            .forecast-day {
+                font-weight: 400;
+            }
+
+            .forecast-icon {
+                width: 3rem;
+            }
+
+            .forecast-climate {
+                font-weight: 600;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}

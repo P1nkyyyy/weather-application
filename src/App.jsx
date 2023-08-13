@@ -1,7 +1,7 @@
 import { useState, createContext } from "react";
 import { Navbar } from "./components/Navbar";
-import { WeatherForNextDays } from "./components/WeatherForNextDays";
-import { CurrentWeather } from "./components/CurrentWeather";
+import { ExtendedForecast } from "./components/forecastWeather/ExtendedForecast";
+import { CurrentWeather } from "./components/currentWeather/CurrentWeather";
 import "./style.css";
 
 export const AppContext = createContext();
@@ -9,7 +9,8 @@ export const AppContext = createContext();
 function App() {
   const [query, setQuery] = useState("");
   const [queryData, setQueryData] = useState({});
-  const [weatherData, setWeatherData] = useState({});
+  const [currentWeather, setCurrentWeather] = useState({});
+  const [forecastWeather, setForecastWeather] = useState({});
   const [isCelsius, setIsCelsius] = useState(true);
 
   return (
@@ -20,15 +21,17 @@ function App() {
           setQuery,
           queryData,
           setQueryData,
-          weatherData,
-          setWeatherData,
+          currentWeather,
+          setCurrentWeather,
           isCelsius,
           setIsCelsius,
+          forecastWeather,
+          setForecastWeather,
         }}
       >
         <Navbar />
         <CurrentWeather />
-        <WeatherForNextDays />
+        <ExtendedForecast data={forecastWeather} />
       </AppContext.Provider>
     </div>
   );

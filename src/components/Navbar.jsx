@@ -9,9 +9,11 @@ export const Navbar = () => {
     setQuery,
     setQueryData,
     queryData,
-    setWeatherData,
+    setCurrentWeather,
     isCelsius,
     setIsCelsius,
+    forecastWeather,
+    setForecastWeather,
   } = useContext(AppContext);
 
   const api = {
@@ -25,30 +27,45 @@ export const Navbar = () => {
         .filter((city) =>
           city.name.toLowerCase().startsWith(query.toLowerCase())
         )
-
         .map((city) => {
           if (query === city.name) {
-            console.log(city);
             setQueryData(city);
             setQuery("");
-          } else {
-            console.log("Špatné město");
           }
         });
     }
   };
 
+  const fetchData = async () => {
+    const array = [
+      fetch(
+        `${api.base}weather?lat=${queryData.coord?.lat}&lon=${
+          queryData.coord?.lon
+        }&units=${isCelsius ? "metric" : "imperial"}&appid=${api.key}`
+      ),
+      fetch(
+        `${api.base}forecast?lat=${queryData.coord?.lat}&lon=${
+          queryData.coord?.lon
+        }&units=${isCelsius ? "metric" : "imperial"}&appid=${api.key}`
+      ),
+    ];
+    try {
+      const res = await Promise.all(array);
+      const data = await Promise.all(
+        res.map((item) => {
+          return item.json();
+        })
+      );
+      setCurrentWeather(data[0]);
+      setForecastWeather(data[1]);
+      console.log(data);
+    } catch {
+      console.log("Multiple fetch failed");
+    }
+  };
+
   useEffect(() => {
-    fetch(
-      `${api.base}weather?lat=${queryData.coord?.lat}&lon=${
-        queryData.coord?.lon
-      }&units=${isCelsius ? "metric" : "imperial"}&appid=${api.key}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setWeatherData(data);
-        console.log(data);
-      });
+    fetchData();
   }, [queryData, isCelsius]);
 
   return (
@@ -105,3 +122,15 @@ export const Navbar = () => {
   );
 };
 */
+
+/* 
+  useEffect(() => {
+    fetch(
+      `${api.base}forecast/daily?lat=${queryData.coord?.lat}&lon=${queryData.coord?.lon}&appid=${api.key}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setCurrentWeather(data);
+        console.log(data);
+      });
+  }, [queryData, isCelsius]);*/

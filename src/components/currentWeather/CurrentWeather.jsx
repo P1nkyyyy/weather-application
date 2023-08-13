@@ -1,14 +1,13 @@
 import { useContext } from "react";
 import { BasicStatsCurrent } from "./BasicStatsCurrent";
 import { MoreStatsCurrent } from "./MoreStatsCurrent";
-import { AppContext } from "../App";
+import { AppContext } from "../../App";
 
 export const CurrentWeather = () => {
-  const { weatherData, isCelsius, setIsCelsius } = useContext(AppContext);
-  console.log(isCelsius);
+  const { currentWeather, isCelsius, setIsCelsius } = useContext(AppContext);
 
   return (
-    <section className="current-weather-section">
+    <section className="current-weather-section weather-section">
       <div className="current-weather-header">
         <h3>Current Weather</h3>
         <div className="toggle-button-cover">
@@ -25,7 +24,7 @@ export const CurrentWeather = () => {
       </div>
 
       <div className="current-weather-container">
-        {typeof weatherData.main != "undefined" ? (
+        {typeof currentWeather.main != "undefined" ? (
           <>
             <BasicStatsCurrent />
             <MoreStatsCurrent />

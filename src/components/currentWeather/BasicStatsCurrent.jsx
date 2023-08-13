@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from "react";
-import cloud from "../assets/cloud.svg";
-import { AppContext } from "../App";
-import { getDate } from "./GetDate";
+import cloud from "../../assets/cloud.svg";
+import { AppContext } from "../../App";
+import { getDate } from "../GetDate";
 
 export const BasicStatsCurrent = () => {
-  const { queryData, weatherData, isCelsius } = useContext(AppContext);
+  const { queryData, currentWeather, isCelsius } = useContext(AppContext);
   const [currentDate, setCurrentDate] = useState(getDate());
 
   useEffect(() => {
@@ -25,11 +25,15 @@ export const BasicStatsCurrent = () => {
       <p className="current-date">{currentDate}</p>
       <div className="temperature-container">
         <span className="city-temperature">
-          {`${Math.round(weatherData.main?.temp)} ${isCelsius ? "°C" : "°F"}`}
+          {`${Math.round(currentWeather.main?.temp)} ${
+            isCelsius ? "°C" : "°F"
+          }`}
         </span>
         <img src={cloud} alt="" />
       </div>
-      <p className="city-weather-type">{weatherData.weather[0].description}</p>
+      <p className="city-weather-type">
+        {currentWeather.weather[0].description}
+      </p>
     </div>
   );
 };
