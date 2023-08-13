@@ -6,6 +6,8 @@ import { AppContext } from "../App";
 export const MoreStatsCurrent = () => {
   const { weatherData } = useContext(AppContext);
 
+  // Icon udělat pomoci Weather.icon
+
   return (
     <div className="more-stats">
       <p className="more-stats-feels-like">
@@ -19,6 +21,11 @@ export const MoreStatsCurrent = () => {
       <MoreStatsItem
         text="Wind"
         value={`${Math.round(weatherData.wind.speed)}kph`}
+        img={<WindIcon />}
+      />
+      <MoreStatsItem
+        text="Pressure"
+        value={`${Math.round(weatherData.main.pressure)}mBar`}
         img={<WindIcon />}
       />
     </div>

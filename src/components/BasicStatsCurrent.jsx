@@ -4,7 +4,7 @@ import { AppContext } from "../App";
 import { getDate } from "./GetDate";
 
 export const BasicStatsCurrent = () => {
-  const { queryData, weatherData } = useContext(AppContext);
+  const { queryData, weatherData, isCelsius } = useContext(AppContext);
   const [currentDate, setCurrentDate] = useState(getDate());
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const BasicStatsCurrent = () => {
       <p className="current-date">{currentDate}</p>
       <div className="temperature-container">
         <span className="city-temperature">
-          {Math.round(weatherData.main?.temp)}°C
+          {`${Math.round(weatherData.main?.temp)} ${isCelsius ? "°C" : "°F"}`}
         </span>
         <img src={cloud} alt="" />
       </div>

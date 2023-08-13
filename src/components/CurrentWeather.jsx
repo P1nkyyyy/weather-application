@@ -4,7 +4,8 @@ import { MoreStatsCurrent } from "./MoreStatsCurrent";
 import { AppContext } from "../App";
 
 export const CurrentWeather = () => {
-  const { weatherData } = useContext(AppContext);
+  const { weatherData, isCelsius, setIsCelsius } = useContext(AppContext);
+  console.log(isCelsius);
 
   return (
     <section className="current-weather-section">
@@ -12,7 +13,11 @@ export const CurrentWeather = () => {
         <h3>Current Weather</h3>
         <div className="toggle-button-cover">
           <div id="button-3" className="button r">
-            <input className="checkbox" type="checkbox" />
+            <input
+              className="checkbox"
+              type="checkbox"
+              onClick={() => setIsCelsius(!isCelsius)}
+            />
             <div className="knobs"></div>
             <div className="layer"></div>
           </div>

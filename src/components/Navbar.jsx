@@ -9,8 +9,9 @@ export const Navbar = () => {
     setQuery,
     setQueryData,
     queryData,
-    weatherData,
     setWeatherData,
+    isCelsius,
+    setIsCelsius,
   } = useContext(AppContext);
 
   const api = {
@@ -39,21 +40,23 @@ export const Navbar = () => {
 
   useEffect(() => {
     fetch(
-      `${api.base}weather?lat=${queryData.coord?.lat}&lon=${queryData.coord?.lon}&units=metric&appid=${api.key}`
+      `${api.base}weather?lat=${queryData.coord?.lat}&lon=${
+        queryData.coord?.lon
+      }&units=${isCelsius ? "metric" : "imperial"}&appid=${api.key}`
     )
       .then((res) => res.json())
       .then((data) => {
         setWeatherData(data);
         console.log(data);
       });
-  }, [queryData]);
+  }, [queryData, isCelsius]);
 
   return (
     <nav className="navigation">
       <img src={search} alt="" />
       <input
         type="text"
-        placeholder="City..."
+        placeholder="Search for location"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={searchLocation}

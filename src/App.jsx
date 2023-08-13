@@ -10,6 +10,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [queryData, setQueryData] = useState({});
   const [weatherData, setWeatherData] = useState({});
+  const [isCelsius, setIsCelsius] = useState(true);
 
   return (
     <div className="weather-app">
@@ -21,6 +22,8 @@ function App() {
           setQueryData,
           weatherData,
           setWeatherData,
+          isCelsius,
+          setIsCelsius,
         }}
       >
         <Navbar />
