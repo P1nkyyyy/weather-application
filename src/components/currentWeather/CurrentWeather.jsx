@@ -24,14 +24,8 @@ export const CurrentWeather = () => {
       </div>
 
       <div className="current-weather-container">
-        {typeof currentWeather.main != "undefined" ? (
-          <>
-            <BasicStatsCurrent />
-            <MoreStatsCurrent />
-          </>
-        ) : (
-          ""
-        )}
+        <BasicStatsCurrent />
+        <MoreStatsCurrent />
       </div>
     </section>
   );

@@ -30,8 +30,14 @@ function App() {
         }}
       >
         <Navbar />
-        <CurrentWeather />
-        <ExtendedForecast data={forecastWeather} />
+        {typeof currentWeather.main != "undefined" ? (
+          <>
+            <CurrentWeather />
+            <ExtendedForecast data={forecastWeather} />
+          </>
+        ) : (
+          ""
+        )}
       </AppContext.Provider>
     </div>
   );
