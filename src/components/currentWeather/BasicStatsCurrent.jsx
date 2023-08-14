@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from "react";
-import cloud from "../../assets/cloud.svg";
 import { AppContext } from "../../App";
 import { getDate } from "../GetDate";
 
@@ -29,7 +28,7 @@ export const BasicStatsCurrent = () => {
             isCelsius ? "°C" : "°F"
           }`}
         </span>
-        <img src={cloud} alt="" />
+        <img src={`icons/${currentWeather.weather[0].icon}.png`} alt="" />
       </div>
       <p className="city-weather-type">
         {currentWeather.weather[0].description}

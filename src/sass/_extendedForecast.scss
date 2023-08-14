@@ -9,6 +9,7 @@
         @include flex(center, center);
         gap: 2rem;
         text-align: center;
+        overflow-x: auto;
 
         .forecast-item {
             text-transform: capitalize;

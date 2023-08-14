@@ -4,7 +4,7 @@ import { MoreStatsCurrent } from "./MoreStatsCurrent";
 import { AppContext } from "../../App";
 
 export const CurrentWeather = () => {
-  const { currentWeather, isCelsius, setIsCelsius } = useContext(AppContext);
+  const { isCelsius, setIsCelsius } = useContext(AppContext);
 
   return (
     <section className="current-weather-section weather-section">

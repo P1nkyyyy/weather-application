@@ -1,17 +1,20 @@
 import { useContext } from "react";
 import { MoreStatsItem } from "./MoreStatsItem";
-import { WindIcon, RaindropIcon } from "../../assets/MoreStatsIcons";
+import {
+  WindIcon,
+  RaindropIcon,
+  PressureIcon,
+} from "../../assets/MoreStatsIcons";
 import { AppContext } from "../../App";
 
 export const MoreStatsCurrent = () => {
-  const { currentWeather } = useContext(AppContext);
-
-  // Icon udělat pomoci Weather.icon
+  const { currentWeather, isCelsius } = useContext(AppContext);
 
   return (
     <div className="more-stats">
       <p className="more-stats-feels-like">
-        Feels like {Math.round(currentWeather.main?.feels_like)}°C
+        Feels like {Math.round(currentWeather.main?.feels_like)}{" "}
+        {isCelsius ? "°C" : "°F"}
       </p>
       <MoreStatsItem
         text="Humidity"
@@ -20,13 +23,15 @@ export const MoreStatsCurrent = () => {
       />
       <MoreStatsItem
         text="Wind"
-        value={`${Math.round(currentWeather.wind.speed)}kph`}
+        value={`${Math.round(currentWeather.wind.speed)}${
+          isCelsius ? "m/s" : "mph"
+        }`}
         img={<WindIcon />}
       />
       <MoreStatsItem
         text="Pressure"
-        value={`${Math.round(currentWeather.main.pressure)}mBar`}
-        img={<WindIcon />}
+        value={`${Math.round(currentWeather.main.pressure)}hpa`}
+        img={<PressureIcon />}
       />
     </div>
   );
