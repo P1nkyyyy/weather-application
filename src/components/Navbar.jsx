@@ -9,7 +9,6 @@ export const Navbar = () => {
     setQuery,
     setQueryData,
     queryData,
-    currentWeather,
     setCurrentWeather,
     isCelsius,
     setForecastWeather,
@@ -27,7 +26,6 @@ export const Navbar = () => {
         .map((city) => {
           if (query.toLowerCase() == city.name.toLowerCase()) {
             setQueryData(city);
-            console.log(city.name);
             setQuery("");
           }
         });
@@ -63,7 +61,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     fetchData();
-  }, [query, isCelsius]);
+  }, [queryData, isCelsius]);
 
   return (
     <nav className="navigation">
