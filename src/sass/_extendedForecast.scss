@@ -6,11 +6,10 @@
     }
 
     .forecast-container {
-        @include flex(center, center);
+        @include flex(none, center);
         gap: 2rem;
         text-align: center;
         overflow-x: auto;
-
         .forecast-item {
             text-transform: capitalize;
             color: $mainBlueColor;
@@ -20,7 +19,7 @@
             }
 
             .forecast-icon {
-                width: 3rem;
+                max-width: 3rem;
             }
 
             .forecast-climate {
@@ -31,5 +30,14 @@
                 margin: 0;
             }
         }
+    }
+}
+
+@media screen and (min-width: 680px) {
+    .forecast-container {
+        @include flex(center, center);
+        gap: 2rem;
+        text-align: center;
+        overflow-x: auto;
     }
 }
